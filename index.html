@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ademruimte — bekkenbodemtraining</title>
+
+<!-- Home screen / app-like behaviour -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ademruimte">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#F6F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191C1A" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADxklEQVR4nO3d23UTQRBF0RKL+EwSJgnzTRREQYZ8DEsYyVcaz6O7btXZAbBqVKdbjw9zeXl7DeAjX2YPgLyIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJx/Of3z1+zR0jkwt8EW7zP4tuP7xMnyYObI+LuwuD+WBDHxynQRxDHgwjoo3UcT9ffvI++H0jvF//+cyifT6PtzfGpK6Ht/dExjg3L7tlHuzg2r7lhH+3iwHq94th5+rtdHl9nDzDIUXtd/p0m319a3ByHn/gmV0j9OE5aZIc+6seBzYrHcer5Ln95VI5jwPJq91E2jmFrK9xHzTgGL6xqHwXjmLKqkn0UjANHqRbHxBNc7/Ko8/N5ht0U+3G92s2BAxWJI8O1cZVqmD2KxIEzVIgj4UlNONIG9nGkXUPawdbzjiP5ApKP95R3HDiVcRwW59JiSMU4DpzNNQ6jE2k06g3LOOxebruBF5ZxYAy/OExPoePYfnFgGLM4HM/fld3wZnFgJOKARByQnOKwe8++5/UITnFgMJs4vM7cA0YPYhMHxiMOSB5xGF3Fa7g8jkccmII4IBEHJOKARByQiAMScUAijjksfuogjjks/sALcUAiDkjEAYk4IBEHJOKA5BGHxRe/9VwexyMOTEEckIgDkk0cLu/TTxk9iE0cYfWyKl6P4BQHBiMOSMQBySwOr/fsG3bDm8WBkfzisDt/C8ex/eLAMJZx2J1Cu4EXlnFgDNc4jM6i0ag3XOMIkxfdYkjFOA6czTuO5Ocy+XhPeccRiReQdrD17OOIlGtIONIGFeLASYrEkeqkphpmjyJx4Ax14khyXpOMcYg6cUSCxUwf4Fil4oip6ylWRtSLIyYtqV4ZUTKOGL6qkmVE1Thi4MKqlhGF44ghaytcRtSOI05eXu0yonwc2KN+HCed7/LXRnSII05YZIcyokkcceg6m5QRfeKIg5bap4xoFUfsXm2rMqJbHLFjwd3KiIZxxKY1NywjesYRn1x2zzKibRyxeuVty4iIy8vb6+wZZnr8PyZ1LiM63xyLB+tvXkYQR4gIKCOIY3GTAmUsiOOvaxCUcUUc/5DFje7fVvAANwck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQekPw2A1ryR0CB9AAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADxklEQVR4nO3d23UTQRBF0RKL+EwSJgnzTRREQYZ8DEsYyVcaz6O7btXZAbBqVKdbjw9zeXl7DeAjX2YPgLyIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJx/Of3z1+zR0jkwt8EW7zP4tuP7xMnyYObI+LuwuD+WBDHxynQRxDHgwjoo3UcT9ffvI++H0jvF//+cyifT6PtzfGpK6Ht/dExjg3L7tlHuzg2r7lhH+3iwHq94th5+rtdHl9nDzDIUXtd/p0m319a3ByHn/gmV0j9OE5aZIc+6seBzYrHcer5Ln95VI5jwPJq91E2jmFrK9xHzTgGL6xqHwXjmLKqkn0UjANHqRbHxBNc7/Ko8/N5ht0U+3G92s2BAxWJI8O1cZVqmD2KxIEzVIgj4UlNONIG9nGkXUPawdbzjiP5ApKP95R3HDiVcRwW59JiSMU4DpzNNQ6jE2k06g3LOOxebruBF5ZxYAy/OExPoePYfnFgGLM4HM/fld3wZnFgJOKARByQnOKwe8++5/UITnFgMJs4vM7cA0YPYhMHxiMOSB5xGF3Fa7g8jkccmII4IBEHJOKARByQiAMScUAijjksfuogjjks/sALcUAiDkjEAYk4IBEHJOKA5BGHxRe/9VwexyMOTEEckIgDkk0cLu/TTxk9iE0cYfWyKl6P4BQHBiMOSMQBySwOr/fsG3bDm8WBkfzisDt/C8ex/eLAMJZx2J1Cu4EXlnFgDNc4jM6i0ag3XOMIkxfdYkjFOA6czTuO5Ocy+XhPeccRiReQdrD17OOIlGtIONIGFeLASYrEkeqkphpmjyJx4Ax14khyXpOMcYg6cUSCxUwf4Fil4oip6ylWRtSLIyYtqV4ZUTKOGL6qkmVE1Thi4MKqlhGF44ghaytcRtSOI05eXu0yonwc2KN+HCed7/LXRnSII05YZIcyokkcceg6m5QRfeKIg5bap4xoFUfsXm2rMqJbHLFjwd3KiIZxxKY1NywjesYRn1x2zzKibRyxeuVty4iIy8vb6+wZZnr8PyZ1LiM63xyLB+tvXkYQR4gIKCOIY3GTAmUsiOOvaxCUcUUc/5DFje7fVvAANwck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQBiTggEQekPw2A1ryR0CB9AAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --bg: #F6F4EE;
+    --bg-soft: #ECE9E0;
+    --card: #FFFFFF;
+    --line: #DAD5C8;
+    --ink: #262620;
+    --ink-soft: #6B6A5F;
+    --sage: #4E7A64;
+    --sage-soft: #DCE7DF;
+    --sand: #B98A4E;
+    --sand-soft: #F1E2C9;
+    --danger: #B5573D;
+    --shadow: 0 1px 2px rgba(38,38,32,0.06), 0 4px 16px rgba(38,38,32,0.05);
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #191C1A;
+      --bg-soft: #20241F;
+      --card: #21251F;
+      --line: #33372F;
+      --ink: #EDEAE0;
+      --ink-soft: #9B9C8F;
+      --sage: #8FBBA1;
+      --sage-soft: #263129;
+      --sand: #D7A968;
+      --sand-soft: #2E2A1E;
+      --danger: #D98266;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #191C1A;
+    --bg-soft: #20241F;
+    --card: #21251F;
+    --line: #33372F;
+    --ink: #EDEAE0;
+    --ink-soft: #9B9C8F;
+    --sage: #8FBBA1;
+    --sage-soft: #263129;
+    --sand: #D7A968;
+    --sand-soft: #2E2A1E;
+    --danger: #D98266;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 90px 0;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; margin: 0; }
+
+  .app {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100%;
+    padding: calc(20px + env(safe-area-inset-top, 0px)) 20px 24px;
+  }
+
+  header.top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  header.top .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+  }
+  header.top button.theme-toggle {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .hero {
+    margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    line-height: 1.18;
+    color: var(--ink);
+    max-width: 15ch;
+  }
+  .hero p {
+    margin: 10px 0 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.5;
+    max-width: 34ch;
+  }
+
+  nav.tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-soft);
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+  }
+  nav.tabs button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 9px 6px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+  nav.tabs button.active {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+
+  /* ---- Vandaag ---- */
+  .phase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sage-soft);
+    color: var(--sage);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .phase-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+
+  .session-summary { display: flex; gap: 18px; margin: 14px 0 4px; }
+  .session-summary .stat { flex: 1; }
+  .session-summary .stat .n { font-family: 'Fraunces', serif; font-size: 24px; }
+  .session-summary .stat .l { font-size: 12px; color: var(--ink-soft); }
+
+  .exercise-list { margin-top: 14px; }
+  .exercise-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .exercise-row:first-child { border-top: none; }
+  .exercise-row .name { color: var(--ink); }
+  .exercise-row .spec { color: var(--ink-soft); font-size: 12.5px; font-family: 'IBM Plex Mono', monospace; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-primary { background: var(--sage); color: var(--bg); }
+  .btn-ghost { background: var(--bg-soft); color: var(--ink); }
+  .btn-outline { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
+  .btn:active { transform: scale(0.98); }
+  .btn[disabled] { opacity: 0.5; pointer-events: none; }
+
+  .already-done {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sage-soft);
+    color: var(--sage);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* ---- Player ---- */
+  .player {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 40;
+    flex-direction: column;
+    padding: calc(20px + env(safe-area-inset-top, 0px)) 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .player.active { display: flex; }
+  .player-top { display: flex; justify-content: flex-start; align-items: center; }
+  .player-top button {
+    background: none; border: none; color: var(--ink-soft); font-size: 14px; cursor: pointer;
+  }
+  .player-mid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .player-exercise { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 6px; }
+  .player-label { font-family: 'Fraunces', serif; font-size: 24px; line-height: 1.25; margin-bottom: 26px; max-width: 16ch; }
+  .ring-wrap { position: relative; width: 220px; height: 220px; margin-bottom: 26px; }
+  .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring-wrap circle { fill: none; stroke-width: 7; }
+  .ring-bg { stroke: var(--line); }
+  .ring-fg { stroke: var(--sage); stroke-linecap: round; transition: stroke-dashoffset 0.2s linear; }
+  .ring-number {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 52px;
+    color: var(--ink);
+  }
+  .player-progress {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--sage);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.3px;
+  }
+  .player-controls { display: flex; gap: 10px; margin-top: 20px; }
+  .player-controls .btn { flex: 1; }
+
+  .rest-note { color: var(--sand); }
+
+  /* ---- Reminders ---- */
+  .reminder {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  .reminder:first-child { border-top: none; }
+  .reminder input[type=checkbox] {
+    margin-top: 3px;
+    width: 17px; height: 17px;
+    accent-color: var(--sage);
+  }
+  .reminder .rtitle { font-size: 14px; font-weight: 500; }
+  .reminder .rdesc { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.45; }
+
+  .tips-sub { font-size: 12px; color: var(--ink-soft); margin: 0 0 10px; }
+  .tip-item { padding: 12px 0; border-top: 1px solid var(--line); }
+  .tip-item:first-of-type { border-top: none; }
+  .tip-item .ttitle { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .tip-item .tdesc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  .setup-steps { margin: 0 0 14px; padding-left: 20px; }
+  .setup-steps li { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; padding-left: 2px; margin-bottom: 4px; }
+  .copy-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-soft);
+    border-radius: 10px;
+    padding: 11px 13px;
+  }
+  .copy-row span { flex: 1; font-size: 13px; color: var(--ink); }
+  .copy-row .btn { width: auto; flex: 0 0 auto; padding: 8px 14px; font-size: 13px; }
+
+  details.accordion { padding: 0; overflow: hidden; }
+  details.accordion .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px;
+    cursor: pointer;
+    list-style: none;
+  }
+  details.accordion .accordion-header::-webkit-details-marker { display: none; }
+  details.accordion .accordion-header .ttitle { display: block; font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+  details.accordion .accordion-header .tdesc-inline { display: block; font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+  details.accordion .chevron {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    margin-top: 2px;
+    position: relative;
+  }
+  details.accordion .chevron::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-right: 2px solid var(--ink-soft);
+    border-bottom: 2px solid var(--ink-soft);
+    width: 8px; height: 8px;
+    margin: 4px;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+  details.accordion[open] .chevron::before { transform: rotate(-135deg); margin-top: 8px; }
+  details.accordion .accordion-body { padding: 0 18px 18px; }
+
+  .technique-list { list-style: none; margin: 0; padding: 0; }
+  .technique-list li { display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .technique-list li:first-child { border-top: none; padding-top: 0; }
+  .technique-list .tnum {
+    flex: 0 0 auto;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--sage-soft);
+    color: var(--sage);
+    font-size: 12.5px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .technique-list .ttitle { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .technique-list .tdesc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ---- Programma ---- */
+  .phase-select {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .phase-option {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 14px;
+    cursor: pointer;
+    background: var(--card);
+  }
+  .phase-option.selected { border-color: var(--sage); background: var(--sage-soft); }
+  .phase-option .ptitle { font-size: 14.5px; font-weight: 600; }
+  .phase-option.selected .ptitle { color: var(--sage); }
+  .phase-option .pdesc { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+
+  .block-editor {
+    border-top: 1px solid var(--line);
+    padding: 13px 0;
+  }
+  .block-editor:first-of-type { border-top: none; }
+  .block-editor .bname { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .field-row { display: flex; gap: 8px; }
+  .field {
+    flex: 1;
+    background: var(--bg-soft);
+    border-radius: 9px;
+    padding: 7px 9px;
+  }
+  .field label { display: block; font-size: 10.5px; color: var(--ink-soft); margin-bottom: 2px; }
+  .field input {
+    width: 100%;
+    border: none;
+    background: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .field input:focus { outline: none; }
+
+  /* ---- Voortgang ---- */
+  .stat-grid { display: flex; gap: 10px; margin-bottom: 14px; }
+  .stat-card { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; text-align: center; }
+  .stat-card .n { font-family: 'Fraunces', serif; font-size: 26px; color: var(--sage); }
+  .stat-card .l { font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
+
+  .dots-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; margin-top: 6px; }
+  .dot-day { aspect-ratio: 1; border-radius: 7px; background: var(--bg-soft); border: 1px solid var(--line); }
+  .dot-day.done { background: var(--sage); border-color: var(--sage); }
+  .dot-day.today { box-shadow: 0 0 0 2px var(--sand); }
+  .dots-label { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .empty-note { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+  .test-card .test-head { margin-bottom: 14px; }
+  .test-card .ttitle { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+  .test-card .tdesc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+
+  .tests-intro { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0 2px 14px; }
+
+  .status-tag { font-size: 11.5px; color: var(--ink-soft); font-weight: 500; }
+
+  .suggestion {
+    margin-top: 4px;
+  }
+  .suggestion .sugg-box {
+    background: var(--bg-soft);
+    border-radius: 10px;
+    padding: 12px 13px;
+    margin-top: 8px;
+  }
+  .suggestion .sugg-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 9px; }
+  .suggestion .sugg-btn { width: auto; padding: 9px 14px; font-size: 13px; }
+
+  .stopwatch-row { display: flex; align-items: center; gap: 12px; }
+  .stopwatch-display {
+    flex: 1;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    color: var(--ink);
+    background: var(--bg-soft);
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .stopwatch-row .btn { width: auto; flex: 0 0 110px; }
+  .stopwatch-display.running { color: var(--sage); }
+
+  .reps-row { display: flex; gap: 10px; }
+  .reps-input {
+    flex: 1;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .reps-input:focus { outline: none; border-color: var(--sage); }
+  .reps-row .btn { width: auto; flex: 0 0 110px; }
+
+  .yn-row { display: flex; gap: 10px; }
+  .yn-row .btn { flex: 1; width: auto; }
+  .yn-row .btn.selected { background: var(--sage); color: var(--bg); border-color: var(--sage); }
+
+  .test-saved {
+    font-size: 12.5px;
+    color: var(--sage);
+    font-weight: 500;
+    margin-top: 10px;
+    min-height: 1.2em;
+  }
+
+  .test-history { margin-top: 4px; }
+  .test-history .throw {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    padding: 7px 0;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .test-history .throw .tval { color: var(--ink); font-family: 'IBM Plex Mono', monospace; }
+  .test-history .tempty { font-size: 12.5px; color: var(--ink-soft); padding-top: 8px; }
+
+  footer.note {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    padding: 0 2px;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">Ademruimte</div>
+    <button class="theme-toggle" id="themeToggle" title="Wissel thema">◐</button>
+  </header>
+
+  <div class="hero">
+    <h1>Adem in. Span aan. Laat los.</h1>
+    <p>Je eigen bekkenbodemprogramma — opgebouwd op wat je al getraind hebt, met ruimte om door te groeien.</p>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-view="vandaag">Vandaag</button>
+    <button class="tab-btn" data-view="programma">Programma</button>
+    <button class="tab-btn" data-view="voortgang">Voortgang</button>
+  </nav>
+
+  <!-- VANDAAG -->
+  <section class="view active" id="view-vandaag">
+    <div class="card" id="todayCard"></div>
+
+    <div class="card" id="reminderCard" style="display:none">
+      <h3 style="font-size:15px; margin-bottom:10px;">Toepassen vandaag</h3>
+      <div id="reminderList"></div>
+    </div>
+
+    <details class="card accordion">
+      <summary class="accordion-header">
+        <span>
+          <span class="ttitle">Seks & bekkenbodem</span>
+          <span class="tdesc-inline">Betere erecties, meer controle, langer uitstellen — de reden dat veel mannen hiermee beginnen</span>
+        </span>
+        <span class="chevron" aria-hidden="true"></span>
+      </summary>
+      <div class="accordion-body">
+        <ol class="technique-list">
+          <li>
+            <span class="tnum">1</span>
+            <div>
+              <div class="ttitle">Het trapje — bewustwording en controle</div>
+              <div class="tdesc">Span in 3–4 stapjes steeds iets harder aan, houd elke stap 2–3 seconden vast, en laat daarna ook in stapjes weer los in plaats van in één keer. Dit traint het gevoel voor je eigen opbouw — de basis voor techniek 2.</div>
+            </div>
+          </li>
+          <li>
+            <span class="tnum">2</span>
+            <div>
+              <div class="ttitle">Stop & knijp</div>
+              <div class="tdesc">Voel je de opbouw richting het punt van geen terugkeer, stop dan volledig met bewegen. Knijp een paar seconden stevig met dezelfde bekkenbodemspier die je gebruikt om je urinestraal te stoppen — het gevoel zit bij deze toepassing vaak net iets dichter bij de basis van de penis. Laat daarna los, maar blijf nog even stilzitten: houd in totaal 20 tot 30 seconden geen enkele beweging aan (de knijp zelf hoeft niet zo lang te duren) en adem rustig door terwijl de opwinding zakt.<br><br>Dit is een prima moment om even uit je partner te gaan en over te schakelen op iets anders — manuele of orale stimulatie bijvoorbeeld — terwijl de opwinding bij jou wat wegzakt. Hervat daarna, en herhaal zo vaak als nodig.</div>
+            </div>
+          </li>
+          <li>
+            <span class="tnum">3</span>
+            <div>
+              <div class="ttitle">De squeeze — alternatief of combinatie</div>
+              <div class="tdesc">Een variant uit dezelfde koker, oorspronkelijk beschreven door Masters &amp; Johnson: in plaats van (of aanvullend op) de bekkenbodem-knijp, knijp je — of je partner — met duim en vingers stevig net ónder de eikel, op de overgang waar schacht en eikel samenkomen (de coronale rand) — niet de eikel zelf. Duim aan de ene kant, wijs- en middelvinger aan de andere kant, een paar seconden stevig samenknijpen tot de aandrang wegzakt. Dit werkt via een ander mechanisme (drukprikkel op die rand in plaats van een spiercontractie), maar met hetzelfde doel — en je kunt er tijdelijk wat stijfheid door verliezen, dat is normaal. Sommige mannen combineren beide: eerst de bekkenbodem-knijp, en bij hardnekkige aandrang de squeeze erbij.</div>
+            </div>
+          </li>
+          <li>
+            <span class="tnum">4</span>
+            <div>
+              <div class="ttitle">Edging</div>
+              <div class="tdesc">Een subtielere variant van start-stop: in plaats van volledig te stoppen, vertraag of verminder je de stimulatie net vóór het omslagpunt, zonder helemaal te pauzeren. Dit traint vooral het bewustzijn van je eigen opbouwcurve — vergelijkbaar met het trapje, maar dan toegepast tijdens de handeling zelf in plaats van als losse oefening.</div>
+            </div>
+          </li>
+        </ol>
+        <p class="tips-sub" style="margin-top:12px;">Geen van deze technieken werkt na één keer proberen — net als de kegel-oefeningen zelf vergen ze herhaalde oefening (meestal enkele weken tot maanden) voordat het bewustzijn en de controle merkbaar toenemen.</p>
+      </div>
+    </details>
+
+    <div class="card">
+      <div class="tip-item" style="padding-top:0;">
+        <div class="ttitle">Ook toepassen in het dagelijks leven</div>
+        <div class="tdesc">Span licht aan vlak vóór opstaan, tillen, hoesten of niezen ("de knack"). Doe een korte contractie bij het beginnen met wandelen of traplopen. Geen aparte sessie — koppel het aan momenten die zich toch al voordoen.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:15px; margin-bottom:2px;">Dagelijkse herinnering instellen</h3>
+      <p class="tips-sub">Ik kan vanuit deze pagina geen meldingen naar je telefoon sturen. Wel zet je in een halve minuut zelf een terugkerende herinnering in je eigen Herinneringen- of Wekker-app — betrouwbaarder dan wat ik zou kunnen nabouwen.</p>
+      <ol class="setup-steps">
+        <li>Open de Herinneringen-app (iPhone) of je Klok-/Google Agenda-app (Android).</li>
+        <li>Maak een nieuwe herinnering met de tekst hieronder.</li>
+        <li>Zet 'm op herhalen: elke dag, op het tijdstip dat jou uitkomt.</li>
+      </ol>
+      <div class="copy-row">
+        <span id="reminderText">Bekkenbodemtraining — open Ademruimte 🌿</span>
+        <button class="btn btn-outline" id="copyReminderBtn">Kopieer</button>
+      </div>
+      <div class="test-saved" id="copySaved"></div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMA -->
+  <section class="view" id="view-programma">
+    <div class="phase-select" id="phaseSelect"></div>
+    <div class="card" id="blockEditor"></div>
+    <footer class="note">Pas holdtijden en herhalingen aan als een fase te licht of te zwaar aanvoelt — het programma onthoudt je aanpassingen op dit toestel.</footer>
+  </section>
+
+  <!-- VOORTGANG -->
+  <section class="view" id="view-voortgang">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="n" id="statStreak">0</div><div class="l">dagen op rij</div></div>
+      <div class="stat-card"><div class="n" id="statTotal">0</div><div class="l">sessies totaal</div></div>
+      <div class="stat-card"><div class="n" id="statWeek">0</div><div class="l">deze week</div></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px; margin-bottom:4px;">Laatste 14 dagen</h3>
+      <div class="dots-grid" id="dotsGrid"></div>
+      <div class="dots-label"><span>14 dagen geleden</span><span>vandaag</span></div>
+    </div>
+
+    <h3 style="font-size:16px; margin: 22px 2px 6px;">Zelftests</h3>
+    <p class="tests-intro">Een spiegel, geen doel om te verslaan. De status vergelijkt je score met het opbouwdoel van dit programma (10s bij 10 reps) — niet met een gemeten gemiddelde man, want die data bestaat niet betrouwbaar. Stop altijd zodra de vorm wegzakt; doorzetten voor een hoger getal werkt averechts. Eens per twee à vier weken testen is genoeg.</p>
+
+    <div class="card test-card">
+      <div class="test-head">
+        <div class="ttitle">Uithoudingstest</div>
+        <div class="tdesc">Span aan op zo'n 60–70% kracht en houd vast tot de vorm wegzakt — niet tot uitputting. Start de stopwatch en stop zodra de spanning merkbaar afneemt of je gaat compenseren.</div>
+      </div>
+      <div class="stopwatch-row">
+        <div class="stopwatch-display" id="enduranceDisplay">0.0s</div>
+        <button class="btn btn-primary" id="enduranceBtn">Start</button>
+      </div>
+      <div class="test-saved" id="enduranceSaved"></div>
+      <div class="test-history" id="enduranceHistory"></div>
+      <div class="suggestion" id="enduranceSuggestion"></div>
+    </div>
+
+    <div class="card test-card">
+      <div class="test-head">
+        <div class="ttitle">Herhalingen op 60–70%</div>
+        <div class="tdesc">Tel hoeveel nette herhalingen je op zo'n 60–70% kracht kunt doen, tot de vorm verslechtert.</div>
+      </div>
+      <div class="reps-row">
+        <input type="number" min="0" id="repsInput" class="reps-input" placeholder="0">
+        <button class="btn btn-primary" id="repsBtn">Opslaan</button>
+      </div>
+      <div class="test-saved" id="repsSaved"></div>
+      <div class="test-history" id="repsHistory"></div>
+      <div class="suggestion" id="repsSuggestion"></div>
+    </div>
+
+    <div class="card test-card">
+      <div class="test-head">
+        <div class="ttitle">Urinestraal stoppen</div>
+        <div class="tdesc">Lukt het de straal in één keer volledig te stoppen? Eenmalige check — niet iets om vaak te herhalen, want te frequent oefenen tijdens het plassen kan de blaasfunctie in de war brengen.</div>
+      </div>
+      <div class="yn-row">
+        <button class="btn btn-outline" id="streamYesBtn">Ja</button>
+        <button class="btn btn-outline" id="streamNoBtn">Nee</button>
+      </div>
+      <div class="test-saved" id="streamSaved"></div>
+      <div class="test-history" id="streamHistory"></div>
+    </div>
+
+    <footer class="note">Verbetering in uithoudingsvermogen en controle is meestal pas na 6–12 weken consistent trainen goed merkbaar. Bij pijn, of als er na drie maanden niets verandert, is een bekkenbodemfysiotherapeut de aangewezen vervolgstap.</footer>
+  </section>
+
+</div>
+
+<!-- PLAYER -->
+<div class="player" id="player">
+  <div class="player-top">
+    <button id="playerClose">Sluiten</button>
+  </div>
+  <div class="player-mid">
+    <div class="player-exercise" id="playerExercise">—</div>
+    <div class="player-label" id="playerLabel">—</div>
+    <div class="ring-wrap">
+      <svg viewBox="0 0 220 220">
+        <circle class="ring-bg" cx="110" cy="110" r="98"></circle>
+        <circle class="ring-fg" id="ringFg" cx="110" cy="110" r="98"></circle>
+      </svg>
+      <div class="ring-number" id="ringNumber">0</div>
+    </div>
+    <div class="player-progress" id="playerProgress">1 / 1</div>
+  </div>
+  <div class="player-controls">
+    <button class="btn btn-outline" id="playerPause">Pauze</button>
+    <button class="btn btn-primary" id="playerSkip">Volgende oefening</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Theme ---------- */
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t){ if(t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme'); }
+  try {
+    const saved = localStorage.getItem('ademruimte_theme');
+    if (saved) applyTheme(saved);
+  } catch(e){}
+  themeToggle.addEventListener('click', function(){
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : (current === 'light' ? null : 'dark');
+    applyTheme(next);
+    try { if(next) localStorage.setItem('ademruimte_theme', next); else localStorage.removeItem('ademruimte_theme'); } catch(e){}
+  });
+
+  /* ---------- Program data ---------- */
+  const DEFAULT_PHASES = [
+    {
+      id: 1,
+      name: "Fase 1 — Basis & bewustzijn",
+      short: "Week 1–2",
+      desc: "De spier leren voelen en aanspannen zonder buik, billen of dijen mee te laten doen. Dit heb je al doorlopen.",
+      blocks: [
+        { key:"p1_long", name:"Lange holds", type:"uniform", contract:6, relax:6, reps:8 },
+        { key:"p1_fast", name:"Snelle contracties", type:"uniform", contract:1, relax:1, reps:15 },
+        { key:"p1_reverse", name:"Reverse kegels — laten zakken", type:"reverse", dur:5, relax:4, reps:5 }
+      ]
+    },
+    {
+      id: 2,
+      name: "Fase 2 — Opbouw",
+      short: "Week 3–4 · jouw huidige fase",
+      desc: "Voortbouwend op je eerste twee weken: langere holds, piramide-training en bewuste ontspanning erbij.",
+      blocks: [
+        { key:"p2_long", name:"Lange holds", type:"uniform", contract:8, relax:8, reps:8 },
+        { key:"p2_pyramid", name:"Piramide", type:"pyramid", values:[2,4,6,4,2], sets:2 },
+        { key:"p2_fast", name:"Snelle contracties", type:"uniform", contract:1, relax:1, reps:20 },
+        { key:"p2_reverse", name:"Reverse kegels — laten zakken", type:"reverse", dur:5, relax:4, reps:5 }
+      ]
+    },
+    {
+      id: 3,
+      name: "Fase 3 — Functionele controle",
+      short: "Week 5–6",
+      desc: "Dezelfde opbouw als fase 2, nu 4–5x per week, aangevuld met controle-oefeningen op het moment zelf.",
+      blocks: [
+        { key:"p3_long", name:"Lange holds", type:"uniform", contract:10, relax:10, reps:10 },
+        { key:"p3_pyramid", name:"Piramide", type:"pyramid", values:[2,4,6,4,2], sets:2 },
+        { key:"p3_fast", name:"Snelle contracties", type:"uniform", contract:1, relax:1, reps:20 },
+        { key:"p3_reverse", name:"Reverse kegels — laten zakken", type:"reverse", dur:5, relax:4, reps:6 }
+      ],
+      reminders: [
+        { title:"Start-stop controle", desc:"Span vlak vóór het punt van geen terugkeer bewust aan om de opbouw te vertragen. Direct relevant voor ejaculatiecontrole." },
+        { title:"De \u2018knack\u2019", desc:"Een korte, snelle aanspanning vlak vóór opstaan, tillen, hoesten of niezen — traint de reflexmatige aansturing." }
+      ]
+    },
+    {
+      id: 4,
+      name: "Fase 4 — Onderhoud",
+      short: "Vanaf week 7",
+      desc: "Het volledige blok, 3x per week, met de functionele controle als vaste gewoonte in het dagelijks leven.",
+      blocks: [
+        { key:"p4_long", name:"Lange holds", type:"uniform", contract:10, relax:10, reps:10 },
+        { key:"p4_pyramid", name:"Piramide", type:"pyramid", values:[2,4,6,4,2], sets:2 },
+        { key:"p4_fast", name:"Snelle contracties", type:"uniform", contract:1, relax:1, reps:20 },
+        { key:"p4_reverse", name:"Reverse kegels — laten zakken", type:"reverse", dur:6, relax:4, reps:6 }
+      ],
+      reminders: [
+        { title:"Start-stop controle", desc:"Blijf dit toepassen wanneer relevant — geen aparte oefensessie, maar een vaste gewoonte." },
+        { title:"De \u2018knack\u2019", desc:"Koppel de korte aanspanning aan fysieke inspanningsmomenten in je dagelijks leven." }
+      ]
+    }
+  ];
+
+  const RESERVED_KEYS = { theme:1 };
+
+  /* ---------- Storage ---------- */
+  const LS_PHASE = 'ademruimte_phase';
+  const LS_OVERRIDES = 'ademruimte_overrides';
+  const LS_HISTORY = 'ademruimte_history';
+  const LS_TESTS_ENDURANCE = 'ademruimte_tests_endurance';
+  const LS_TESTS_REPS = 'ademruimte_tests_reps';
+  const LS_TESTS_STREAM = 'ademruimte_tests_stream';
+  const LS_LAST_INCREASE = 'ademruimte_last_increase';
+
+  function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
+  function safeSet(key, val){ try { localStorage.setItem(key, val); } catch(e){} }
+
+  let state = {
+    phaseId: parseInt(safeGet(LS_PHASE) || '2', 10),
+    overrides: JSON.parse(safeGet(LS_OVERRIDES) || '{}'),
+    history: JSON.parse(safeGet(LS_HISTORY) || '[]'),
+    testsEndurance: JSON.parse(safeGet(LS_TESTS_ENDURANCE) || '[]'),
+    testsReps: JSON.parse(safeGet(LS_TESTS_REPS) || '[]'),
+    testsStream: JSON.parse(safeGet(LS_TESTS_STREAM) || '[]'),
+    lastIncrease: JSON.parse(safeGet(LS_LAST_INCREASE) || '{}')
+  };
+
+  function saveState(){
+    safeSet(LS_PHASE, String(state.phaseId));
+    safeSet(LS_OVERRIDES, JSON.stringify(state.overrides));
+    safeSet(LS_HISTORY, JSON.stringify(state.history));
+    safeSet(LS_TESTS_ENDURANCE, JSON.stringify(state.testsEndurance));
+    safeSet(LS_TESTS_REPS, JSON.stringify(state.testsReps));
+    safeSet(LS_TESTS_STREAM, JSON.stringify(state.testsStream));
+    safeSet(LS_LAST_INCREASE, JSON.stringify(state.lastIncrease));
+  }
+
+  function getPhase(id){ return DEFAULT_PHASES.find(p => p.id === id); }
+
+  function effectiveBlock(block){
+    const o = state.overrides[block.key];
+    if (!o) return block;
+    return Object.assign({}, block, o);
+  }
+
+  function todayStr(){
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function dateStr(d){
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function doneToday(){ return state.history.includes(todayStr()); }
+
+  function markDoneToday(){
+    const t = todayStr();
+    if (!state.history.includes(t)) state.history.push(t);
+    saveState();
+    renderAll();
+  }
+
+  /* ---------- Tabs ---------- */
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-'+btn.dataset.view).classList.add('active');
+    });
+  });
+
+  /* ---------- Render: Vandaag ---------- */
+  function blockSpecText(b){
+    if (b.type === 'uniform') return b.contract + 's / ' + b.relax + 's · ' + b.reps + 'x';
+    if (b.type === 'pyramid') return b.values.join('-') + 's · ' + b.sets + ' sets';
+    if (b.type === 'reverse') return b.dur + 's / ' + b.relax + 's · ' + b.reps + 'x';
+    return '';
+  }
+
+  function renderToday(){
+    const phase = getPhase(state.phaseId);
+    const blocks = phase.blocks.map(effectiveBlock);
+    const card = document.getElementById('todayCard');
+
+    let rowsHtml = blocks.map(b => (
+      '<div class="exercise-row"><span class="name">'+b.name+'</span><span class="spec">'+blockSpecText(b)+'</span></div>'
+    )).join('');
+
+    const isDone = doneToday();
+
+    card.innerHTML =
+      '<div class="phase-pill"><span class="dot"></span>' + phase.name + '</div>' +
+      '<div class="exercise-list">' + rowsHtml + '</div>' +
+      '<div style="margin-top:16px;">' +
+        (isDone
+          ? '<div class="already-done">✓ Sessie van vandaag afgerond</div>'
+          : '<button class="btn btn-primary" id="startSessionBtn">Start sessie</button>'
+        ) +
+      '</div>';
+
+    if (!isDone) {
+      document.getElementById('startSessionBtn').addEventListener('click', ()=> startPlayer(blocks));
+    }
+
+    const remCard = document.getElementById('reminderCard');
+    const remList = document.getElementById('reminderList');
+    if (phase.reminders && phase.reminders.length) {
+      remCard.style.display = '';
+      const key = 'ademruimte_reminders_' + todayStr() + '_' + phase.id;
+      let checked = JSON.parse(safeGet(key) || '{}');
+      remList.innerHTML = phase.reminders.map((r, i) => (
+        '<label class="reminder">' +
+          '<input type="checkbox" data-i="'+i+'" '+(checked[i] ? 'checked' : '')+'>' +
+          '<span><span class="rtitle">'+r.title+'</span><span class="rdesc">'+r.desc+'</span></span>' +
+        '</label>'
+      )).join('');
+      remList.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('change', ()=>{
+          checked[inp.dataset.i] = inp.checked;
+          safeSet(key, JSON.stringify(checked));
+        });
+      });
+    } else {
+      remCard.style.display = 'none';
+    }
+  }
+
+  /* ---------- Render: Programma ---------- */
+  function renderProgramma(){
+    const sel = document.getElementById('phaseSelect');
+    sel.innerHTML = DEFAULT_PHASES.map(p => (
+      '<div class="phase-option '+(p.id === state.phaseId ? 'selected' : '')+'" data-id="'+p.id+'">' +
+        '<div class="ptitle">'+p.name+'</div>' +
+        '<div class="pdesc">'+p.short+' — '+p.desc+'</div>' +
+      '</div>'
+    )).join('');
+    sel.querySelectorAll('.phase-option').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        state.phaseId = parseInt(el.dataset.id, 10);
+        saveState();
+        renderAll();
+      });
+    });
+
+    const phase = getPhase(state.phaseId);
+    const editor = document.getElementById('blockEditor');
+    editor.innerHTML = phase.blocks.map(rawBlock => {
+      const b = effectiveBlock(rawBlock);
+      if (b.type === 'uniform') {
+        return blockEditorUniform(b);
+      } else if (b.type === 'reverse') {
+        return blockEditorReverse(b);
+      } else if (b.type === 'pyramid') {
+        return blockEditorPyramid(b);
+      }
+      return '';
+    }).join('');
+
+    editor.querySelectorAll('input[data-key]').forEach(inp=>{
+      inp.addEventListener('change', ()=>{
+        const key = inp.dataset.key;
+        const field = inp.dataset.field;
+        const val = Math.max(1, parseInt(inp.value, 10) || 1);
+        if (!state.overrides[key]) state.overrides[key] = {};
+        state.overrides[key][field] = val;
+        saveState();
+        renderAll();
+      });
+    });
+  }
+
+  function blockEditorUniform(b){
+    return '<div class="block-editor">' +
+      '<div class="bname">'+b.name+'</div>' +
+      '<div class="field-row">' +
+        field('Aanspannen (s)', b.key, 'contract', b.contract) +
+        field('Ontspannen (s)', b.key, 'relax', b.relax) +
+        field('Herhalingen', b.key, 'reps', b.reps) +
+      '</div>' +
+    '</div>';
+  }
+  function blockEditorReverse(b){
+    return '<div class="block-editor">' +
+      '<div class="bname">'+b.name+'</div>' +
+      '<div class="field-row">' +
+        field('Laten zakken (s)', b.key, 'dur', b.dur) +
+        field('Normaal (s)', b.key, 'relax', b.relax) +
+        field('Herhalingen', b.key, 'reps', b.reps) +
+      '</div>' +
+    '</div>';
+  }
+  function blockEditorPyramid(b){
+    return '<div class="block-editor">' +
+      '<div class="bname">'+b.name+'</div>' +
+      '<div class="field-row">' +
+        field('Sets', b.key, 'sets', b.sets) +
+      '</div>' +
+      '<div style="font-size:11.5px; color:var(--ink-soft); margin-top:8px;">Patroon: '+b.values.join('s → ')+'s (vast)</div>' +
+    '</div>';
+  }
+  function field(label, key, name, val){
+    return '<div class="field"><label>'+label+'</label><input type="number" min="1" data-key="'+key+'" data-field="'+name+'" value="'+val+'"></div>';
+  }
+
+  /* ---------- Render: Voortgang ---------- */
+  function renderVoortgang(){
+    const hist = new Set(state.history);
+    // streak
+    let streak = 0;
+    let cursor = new Date();
+    if (!hist.has(todayStr())) {
+      // allow streak to still count up to yesterday
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    while (hist.has(dateStr(cursor))) {
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    document.getElementById('statStreak').textContent = streak;
+    document.getElementById('statTotal').textContent = state.history.length;
+
+    // this week (Mon-based)
+    const now = new Date();
+    const dow = (now.getDay() + 6) % 7; // 0 = Monday
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - dow);
+    let weekCount = 0;
+    for (let i=0;i<7;i++){
+      const d = new Date(monday);
+      d.setDate(monday.getDate()+i);
+      if (hist.has(dateStr(d))) weekCount++;
+    }
+    document.getElementById('statWeek').textContent = weekCount;
+
+    // 14 day dots
+    const grid = document.getElementById('dotsGrid');
+    let dotsHtml = '';
+    for (let i=13;i>=0;i--){
+      const d = new Date();
+      d.setDate(d.getDate()-i);
+      const isDone = hist.has(dateStr(d));
+      const isToday = i === 0;
+      dotsHtml += '<div class="dot-day '+(isDone?'done':'')+' '+(isToday?'today':'')+'" title="'+dateStr(d)+'"></div>';
+    }
+    grid.innerHTML = dotsHtml;
+  }
+
+  function renderAll(){
+    renderToday();
+    renderProgramma();
+    renderVoortgang();
+    renderTests();
+  }
+
+  /* ---------- Zelftests ---------- */
+  function fmtDate(iso){
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('nl-NL', { day:'numeric', month:'short' });
+  }
+
+  // Vergelijking met het opbouwdoel van dit programma (10s bij 10 reps, zie fase 3/4) —
+  // geen gemeten populatiegemiddelde. Daarvoor is geen betrouwbare, gepubliceerde norm.
+  function enduranceStatus(sec){
+    if (sec < 7) return 'onder het opbouwdoel';
+    if (sec <= 12) return 'rond het opbouwdoel';
+    return 'boven het opbouwdoel';
+  }
+  function repsStatus(n){
+    if (n < 6) return 'onder het opbouwdoel';
+    if (n <= 12) return 'rond het opbouwdoel';
+    return 'boven het opbouwdoel';
+  }
+
+  function renderHistoryList(elId, entries, formatVal, statusFn){
+    const el = document.getElementById(elId);
+    if (!entries.length) { el.innerHTML = '<div class="tempty">Nog geen resultaten gelogd.</div>'; return; }
+    const last5 = entries.slice(-5).reverse();
+    el.innerHTML = last5.map(e => {
+      const status = statusFn ? ' <span class="status-tag">· '+statusFn(e)+'</span>' : '';
+      return '<div class="throw"><span>'+fmtDate(e.date)+'</span><span class="tval">'+formatVal(e)+status+'</span></div>';
+    }).join('');
+  }
+
+  function getLongHoldBlock(){
+    const phase = getPhase(state.phaseId);
+    const raw = phase.blocks.find(b => b.key === 'p' + state.phaseId + '_long');
+    return raw ? effectiveBlock(raw) : null;
+  }
+  function getFastBlock(){
+    const phase = getPhase(state.phaseId);
+    const raw = phase.blocks.find(b => b.key === 'p' + state.phaseId + '_fast');
+    return raw ? effectiveBlock(raw) : null;
+  }
+
+  function renderSuggestion(elId, latestEntry, valueFn, getBlock, blockName, blockField, blockLabel, unit, throttleKey, computeSuggested){
+    const el = document.getElementById(elId);
+    const block = getBlock();
+    if (!el || !block || !latestEntry) { if (el) el.innerHTML = ''; return; }
+    const current = block[blockField];
+    const value = valueFn(latestEntry);
+    let suggested = computeSuggested(value, current);
+    if (suggested === null || suggested === current) { el.innerHTML = ''; return; }
+    const isIncrease = suggested > current;
+    // Max one increase per day, however high the test result was — a decrease (scaling back) is never throttled.
+    if (isIncrease && state.lastIncrease[throttleKey] === todayStr()) { el.innerHTML = ''; return; }
+    const direction = isIncrease ? 'iets langer' : 'iets korter';
+    el.innerHTML =
+      '<div class="sugg-box">' +
+        '<div class="sugg-text">Je laatste resultaat suggereert dat '+blockLabel+' bij "'+blockName+'" '+direction+' mag: van '+current+unit+' naar '+suggested+unit+'. Nooit meer dan een kleine stap per dag — verander het niet omdat het moet.</div>' +
+        '<button class="btn btn-outline sugg-btn" data-apply="'+elId+'" data-throttle="'+throttleKey+'" data-increase="'+isIncrease+'" data-value="'+suggested+'">Toepassen op '+blockName.toLowerCase()+'</button>' +
+      '</div>';
+  }
+
+  function renderTests(){
+    renderHistoryList('enduranceHistory', state.testsEndurance, e => e.seconds.toFixed(1) + 's', e => enduranceStatus(e.seconds));
+    renderHistoryList('repsHistory', state.testsReps, e => e.reps + 'x', e => repsStatus(e.reps));
+    renderHistoryList('streamHistory', state.testsStream, e => e.result === 'ja' ? 'Ja' : 'Nee');
+
+    const lastEndurance = state.testsEndurance[state.testsEndurance.length - 1];
+    renderSuggestion('enduranceSuggestion', lastEndurance, e => e.seconds, getLongHoldBlock, 'Lange holds', 'contract', 'de aanspantijd', 's', 'endurance', (val, current) => {
+      // Always a fixed +/-2 step, regardless of how far the test result was above or below it.
+      if (val >= current + 5) return current + 2;
+      if (val < current - 3) return Math.max(4, current - 2);
+      return null;
+    });
+    const lastReps = state.testsReps[state.testsReps.length - 1];
+    renderSuggestion('repsSuggestion', lastReps, e => e.reps, getFastBlock, 'Snelle contracties', 'reps', 'het aantal herhalingen', 'x', 'reps', (val, current) => {
+      if (val >= current + 4) return current + 2;
+      if (val < current - 3) return Math.max(8, current - 2);
+      return null;
+    });
+  }
+
+  document.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.sugg-btn');
+    if (!btn) return;
+    const value = parseInt(btn.dataset.value, 10);
+    const isIncrease = btn.dataset.increase === 'true';
+    if (btn.dataset.apply === 'enduranceSuggestion') {
+      const key = 'p' + state.phaseId + '_long';
+      if (!state.overrides[key]) state.overrides[key] = {};
+      state.overrides[key].contract = value;
+      state.overrides[key].relax = value;
+    } else if (btn.dataset.apply === 'repsSuggestion') {
+      const key = 'p' + state.phaseId + '_fast';
+      if (!state.overrides[key]) state.overrides[key] = {};
+      state.overrides[key].reps = value;
+    }
+    if (isIncrease) state.lastIncrease[btn.dataset.throttle] = todayStr();
+    saveState();
+    renderAll();
+  });
+
+  // Endurance stopwatch
+  let enduranceRunning = false;
+  let enduranceStart = 0;
+  let enduranceRaf = null;
+  const enduranceDisplay = document.getElementById('enduranceDisplay');
+  const enduranceBtn = document.getElementById('enduranceBtn');
+  const enduranceSaved = document.getElementById('enduranceSaved');
+
+  function enduranceTick(){
+    const elapsed = (Date.now() - enduranceStart) / 1000;
+    enduranceDisplay.textContent = elapsed.toFixed(1) + 's';
+    if (enduranceRunning) enduranceRaf = requestAnimationFrame(enduranceTick);
+  }
+
+  enduranceBtn.addEventListener('click', ()=>{
+    if (!enduranceRunning) {
+      enduranceRunning = true;
+      enduranceStart = Date.now();
+      enduranceDisplay.classList.add('running');
+      enduranceBtn.textContent = 'Stop';
+      enduranceSaved.textContent = '';
+      enduranceRaf = requestAnimationFrame(enduranceTick);
+    } else {
+      enduranceRunning = false;
+      cancelAnimationFrame(enduranceRaf);
+      enduranceDisplay.classList.remove('running');
+      enduranceBtn.textContent = 'Start';
+      const seconds = (Date.now() - enduranceStart) / 1000;
+      state.testsEndurance.push({ date: todayStr(), seconds: seconds });
+      saveState();
+      enduranceSaved.textContent = 'Opgeslagen: ' + seconds.toFixed(1) + 's · ' + enduranceStatus(seconds);
+      renderTests();
+    }
+  });
+
+  // Reps test
+  const repsInput = document.getElementById('repsInput');
+  const repsBtn = document.getElementById('repsBtn');
+  const repsSaved = document.getElementById('repsSaved');
+  repsBtn.addEventListener('click', ()=>{
+    const val = parseInt(repsInput.value, 10);
+    if (!val || val < 1) return;
+    state.testsReps.push({ date: todayStr(), reps: val });
+    saveState();
+    repsSaved.textContent = 'Opgeslagen: ' + val + ' herhalingen · ' + repsStatus(val);
+    repsInput.value = '';
+    renderTests();
+  });
+
+  // Stream test
+  const streamYesBtn = document.getElementById('streamYesBtn');
+  const streamNoBtn = document.getElementById('streamNoBtn');
+  const streamSaved = document.getElementById('streamSaved');
+  function logStream(result){
+    state.testsStream.push({ date: todayStr(), result: result });
+    saveState();
+    streamSaved.textContent = 'Opgeslagen: ' + (result === 'ja' ? 'Ja' : 'Nee');
+    renderTests();
+  }
+  streamYesBtn.addEventListener('click', ()=> logStream('ja'));
+  streamNoBtn.addEventListener('click', ()=> logStream('nee'));
+
+  /* ---------- Player ---------- */
+  const playerEl = document.getElementById('player');
+  const playerExercise = document.getElementById('playerExercise');
+  const playerLabel = document.getElementById('playerLabel');
+  const playerProgress = document.getElementById('playerProgress');
+  const ringFg = document.getElementById('ringFg');
+  const ringNumber = document.getElementById('ringNumber');
+  const playerPause = document.getElementById('playerPause');
+  const playerSkip = document.getElementById('playerSkip');
+  const playerClose = document.getElementById('playerClose');
+
+  const RADIUS = 98;
+  const CIRC = 2 * Math.PI * RADIUS;
+  ringFg.style.strokeDasharray = CIRC;
+
+  let steps = [];
+  let stepIndex = 0;
+  let stepEndAt = 0;
+  let pausedAt = null;
+  let rafHandle = null;
+  let audioCtx = null;
+  let wakeLock = null;
+
+  function beep(freq, dur){
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.15, audioCtx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch(e){}
+  }
+
+  async function requestWakeLock(){
+    try {
+      if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
+    } catch(e){ /* not available or denied — timer still works, screen may just dim */ }
+  }
+  function releaseWakeLock(){
+    try { if (wakeLock) { wakeLock.release(); wakeLock = null; } } catch(e){}
+  }
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.visibilityState === 'visible' && playerEl.classList.contains('active')) {
+      requestWakeLock();
+    }
+  });
+
+  function buildSteps(blocks){
+    const seq = [];
+    blocks.forEach((b, bi) => {
+      if (b.type === 'uniform') {
+        for (let i=0;i<b.reps;i++){
+          seq.push({ exercise:b.name, label:'Aanspannen', dur:b.contract, kind:'contract', repIndex:i+1, repTotal:b.reps });
+          seq.push({ exercise:b.name, label:'Ontspannen', dur:b.relax, kind:'relax', repIndex:i+1, repTotal:b.reps });
+        }
+      } else if (b.type === 'pyramid') {
+        const repTotal = b.sets * b.values.length;
+        let repIndex = 0;
+        for (let s=0;s<b.sets;s++){
+          b.values.forEach(v=>{
+            repIndex++;
+            seq.push({ exercise:b.name, label:'Aanspannen', dur:v, kind:'contract', repIndex:repIndex, repTotal:repTotal });
+            seq.push({ exercise:b.name, label:'Ontspannen', dur:v, kind:'relax', repIndex:repIndex, repTotal:repTotal });
+          });
+        }
+      } else if (b.type === 'reverse') {
+        for (let i=0;i<b.reps;i++){
+          seq.push({ exercise:b.name, label:'Inademen & laten zakken', dur:b.dur, kind:'reverse', repIndex:i+1, repTotal:b.reps });
+          seq.push({ exercise:b.name, label:'Uitademen & ontspannen', dur:b.relax, kind:'relax', repIndex:i+1, repTotal:b.reps });
+        }
+      }
+      if (bi < blocks.length - 1) {
+        seq.push({ exercise:'Rust', label:'Rust', dur:20, kind:'rest' });
+      }
+    });
+    return seq;
+  }
+
+  function startPlayer(blocks){
+    steps = buildSteps(blocks);
+    stepIndex = 0;
+    pausedAt = null;
+    playerPause.textContent = 'Pauze';
+    playerEl.classList.add('active');
+    requestWakeLock();
+    enterStep();
+    if (!rafHandle) rafHandle = requestAnimationFrame(loop);
+  }
+
+  function enterStep(){
+    if (stepIndex >= steps.length) { finishPlayer(); return; }
+    const step = steps[stepIndex];
+    stepEndAt = Date.now() + step.dur * 1000;
+    playerExercise.textContent = step.exercise;
+    playerLabel.textContent = step.label;
+    playerLabel.classList.toggle('rest-note', step.kind === 'rest');
+    playerProgress.textContent = step.kind === 'rest' ? 'Rust' : ('Herhaling ' + step.repIndex + ' / ' + step.repTotal);
+    beep(step.kind === 'contract' ? 660 : (step.kind === 'reverse' ? 560 : 440), 0.12);
+    drawRing(step.dur * 1000, step.dur * 1000);
+  }
+
+  function drawRing(msLeft, totalMs){
+    ringNumber.textContent = Math.max(0, Math.ceil(msLeft / 1000));
+    const frac = Math.max(0, Math.min(1, msLeft / totalMs));
+    ringFg.style.strokeDashoffset = CIRC * (1 - frac);
+  }
+
+  function loop(){
+    rafHandle = requestAnimationFrame(loop);
+    if (pausedAt || !steps.length || stepIndex >= steps.length) return;
+    const step = steps[stepIndex];
+    const msLeft = stepEndAt - Date.now();
+    drawRing(msLeft, step.dur * 1000);
+    if (msLeft <= 0) {
+      stepIndex++;
+      enterStep();
+    }
+  }
+
+  function finishPlayer(){
+    cancelAnimationFrame(rafHandle);
+    rafHandle = null;
+    playerEl.classList.remove('active');
+    releaseWakeLock();
+    markDoneToday();
+  }
+
+  playerPause.addEventListener('click', ()=>{
+    if (pausedAt) {
+      stepEndAt += (Date.now() - pausedAt);
+      pausedAt = null;
+      playerPause.textContent = 'Pauze';
+    } else {
+      pausedAt = Date.now();
+      playerPause.textContent = 'Hervat';
+    }
+  });
+  playerSkip.addEventListener('click', ()=>{
+    pausedAt = null;
+    playerPause.textContent = 'Pauze';
+    const currentExercise = steps[stepIndex] ? steps[stepIndex].exercise : null;
+    let idx = stepIndex;
+    // skip remaining reps of the current exercise (or the rest of a rest period)
+    while (idx < steps.length && steps[idx].exercise === currentExercise) idx++;
+    // skip the rest period that follows it, if any
+    while (idx < steps.length && steps[idx].kind === 'rest') idx++;
+    stepIndex = idx;
+    enterStep();
+  });
+  playerClose.addEventListener('click', ()=>{
+    cancelAnimationFrame(rafHandle);
+    rafHandle = null;
+    playerEl.classList.remove('active');
+    releaseWakeLock();
+  });
+
+  const copyReminderBtn = document.getElementById('copyReminderBtn');
+  const copySaved = document.getElementById('copySaved');
+  if (copyReminderBtn) {
+    copyReminderBtn.addEventListener('click', async ()=>{
+      const text = document.getElementById('reminderText').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        copySaved.textContent = 'Gekopieerd — plak het in je Herinneringen-app.';
+      } catch(e) {
+        copySaved.textContent = 'Kopiëren lukte niet — selecteer en kopieer de tekst handmatig.';
+      }
+    });
+  }
+
+  /* ---------- Init ---------- */
+  renderAll();
+})();
+</script>
+</body>
+</html>
