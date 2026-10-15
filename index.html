@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ademruimte — bekkenbodemtraining</title>
 
+<!-- Ask search engines not to index this page (a request, not a guarantee) -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+
 <!-- Home screen / app-like behaviour -->
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -246,9 +250,20 @@
     padding: calc(20px + env(safe-area-inset-top, 0px)) 20px calc(24px + env(safe-area-inset-bottom, 0px));
   }
   .player.active { display: flex; }
-  .player-top { display: flex; justify-content: flex-start; align-items: center; }
+  .player-top { display: flex; justify-content: space-between; align-items: center; }
   .player-top button {
     background: none; border: none; color: var(--ink-soft); font-size: 14px; cursor: pointer;
+  }
+  .player-top button.vib-btn {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 13px;
+    font-size: 13px;
+  }
+  .player-top button.vib-btn[aria-pressed="true"] {
+    color: var(--sage);
+    border-color: var(--sage);
+    background: var(--sage-soft);
   }
   .player-mid {
     flex: 1;
@@ -264,7 +279,8 @@
   .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
   .ring-wrap circle { fill: none; stroke-width: 7; }
   .ring-bg { stroke: var(--line); }
-  .ring-fg { stroke: var(--sage); stroke-linecap: round; transition: stroke-dashoffset 0.2s linear; }
+  /* No CSS transition: the ring is redrawn every animation frame from the real clock, so a transition would only make it lag behind. */
+  .ring-fg { stroke: var(--sage); stroke-linecap: round; }
   .ring-number {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
@@ -279,10 +295,45 @@
     font-family: 'IBM Plex Mono', monospace;
     letter-spacing: 0.3px;
   }
+  .player-cue {
+    margin-top: 14px;
+    min-height: 2.9em; /* reserve two lines so the layout does not jump between steps */
+    max-width: 30ch;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
   .player-controls { display: flex; gap: 10px; margin-top: 20px; }
   .player-controls .btn { flex: 1; }
 
   .rest-note { color: var(--sand); }
+
+  /* ---- Instellingen ---- */
+  .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; cursor: pointer; }
+  .switch-row .ttitle { display: block; font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .switch-row .tdesc { display: block; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  input.switch {
+    -webkit-appearance: none; appearance: none;
+    flex: 0 0 auto;
+    width: 44px; height: 26px;
+    border-radius: 999px;
+    background: var(--line);
+    position: relative;
+    cursor: pointer;
+    transition: background .15s ease;
+    margin: 0;
+  }
+  input.switch::after {
+    content: '';
+    position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--card);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    transition: transform .15s ease;
+  }
+  input.switch:checked { background: var(--sage); }
+  input.switch:checked::after { transform: translateX(18px); }
 
   /* ---- Reminders ---- */
   .reminder {
@@ -604,6 +655,19 @@
   <section class="view" id="view-programma">
     <div class="phase-select" id="phaseSelect"></div>
     <div class="card" id="blockEditor"></div>
+
+    <div class="card" id="settingsCard">
+      <h3 style="font-size:15px; margin-bottom:12px;">Instellingen</h3>
+      <label class="switch-row">
+        <span>
+          <span class="ttitle">Trillen bij overgangen</span>
+          <span class="tdesc">Je telefoon trilt kort bij elke wissel tussen aanspannen en ontspannen. Je kunt dit ook tijdens een sessie aan- of uitzetten.</span>
+        </span>
+        <input type="checkbox" class="switch" id="vibrationToggle">
+      </label>
+      <p class="tips-sub" id="vibrationUnsupported" style="display:none; margin:10px 0 0;">Trillen wordt op dit toestel of in deze browser niet ondersteund (bijvoorbeeld op een iPhone).</p>
+    </div>
+
     <footer class="note">Pas holdtijden en herhalingen aan als een fase te licht of te zwaar aanvoelt — het programma onthoudt je aanpassingen op dit toestel.</footer>
   </section>
 
@@ -673,6 +737,7 @@
 <div class="player" id="player">
   <div class="player-top">
     <button id="playerClose">Sluiten</button>
+    <button id="playerVibration" class="vib-btn" aria-pressed="true">Trillen: aan</button>
   </div>
   <div class="player-mid">
     <div class="player-exercise" id="playerExercise">—</div>
@@ -685,6 +750,7 @@
       <div class="ring-number" id="ringNumber">0</div>
     </div>
     <div class="player-progress" id="playerProgress">1 / 1</div>
+    <div class="player-cue" id="playerCue"></div>
   </div>
   <div class="player-controls">
     <button class="btn btn-outline" id="playerPause">Pauze</button>
@@ -780,6 +846,7 @@
   const LS_TESTS_REPS = 'ademruimte_tests_reps';
   const LS_TESTS_STREAM = 'ademruimte_tests_stream';
   const LS_LAST_INCREASE = 'ademruimte_last_increase';
+  const LS_VIBRATION = 'ademruimte_vibration';
 
   function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
   function safeSet(key, val){ try { localStorage.setItem(key, val); } catch(e){} }
@@ -791,7 +858,8 @@
     testsEndurance: JSON.parse(safeGet(LS_TESTS_ENDURANCE) || '[]'),
     testsReps: JSON.parse(safeGet(LS_TESTS_REPS) || '[]'),
     testsStream: JSON.parse(safeGet(LS_TESTS_STREAM) || '[]'),
-    lastIncrease: JSON.parse(safeGet(LS_LAST_INCREASE) || '{}')
+    lastIncrease: JSON.parse(safeGet(LS_LAST_INCREASE) || '{}'),
+    vibration: safeGet(LS_VIBRATION) !== 'off'
   };
 
   function saveState(){
@@ -1188,6 +1256,67 @@
   const playerExercise = document.getElementById('playerExercise');
   const playerLabel = document.getElementById('playerLabel');
   const playerProgress = document.getElementById('playerProgress');
+  const playerCue = document.getElementById('playerCue');
+  const playerVibration = document.getElementById('playerVibration');
+  const vibrationToggle = document.getElementById('vibrationToggle');
+  const vibrationUnsupported = document.getElementById('vibrationUnsupported');
+
+  /* ---------- Trillen ---------- */
+  const canVibrate = typeof navigator.vibrate === 'function';
+
+  function vibrate(pattern){
+    if (!canVibrate || !state.vibration) return;
+    try { navigator.vibrate(pattern); } catch(e){}
+  }
+  function vibrateFor(kind){
+    if (kind === 'contract') vibrate(150);
+    else if (kind === 'rest') vibrate(250);
+    else vibrate([70, 60, 70]); // relax / reverse: a double tap, so it feels different from "aanspannen"
+  }
+  function syncVibrationUI(){
+    vibrationToggle.checked = state.vibration && canVibrate;
+    vibrationToggle.disabled = !canVibrate;
+    vibrationUnsupported.style.display = canVibrate ? 'none' : '';
+    playerVibration.style.display = canVibrate ? '' : 'none';
+    playerVibration.setAttribute('aria-pressed', String(state.vibration));
+    playerVibration.textContent = state.vibration ? 'Trillen: aan' : 'Trillen: uit';
+  }
+  function setVibration(on){
+    state.vibration = on;
+    safeSet(LS_VIBRATION, on ? 'on' : 'off');
+    if (!on && canVibrate) { try { navigator.vibrate(0); } catch(e){} }
+    if (on) vibrate(60); // short confirmation pulse (the tap that switched it on allows it)
+    syncVibrationUI();
+  }
+  vibrationToggle.addEventListener('change', ()=> setVibration(vibrationToggle.checked));
+  playerVibration.addEventListener('click', ()=> setVibration(!state.vibration));
+
+  /* ---------- Vormaanwijzing per stap ---------- */
+  function cueFor(step){
+    if (step.kind === 'rest') return 'Even rust. Adem rustig door en bereid je voor op de volgende oefening.';
+    const ex = step.exercise || '';
+    if (ex.indexOf('Reverse') === 0) {
+      return step.kind === 'reverse'
+        ? 'Adem rustig in en laat de bekkenbodem zacht meezakken. Niet persen.'
+        : 'Adem uit en keer terug naar je normale rusttoestand.';
+    }
+    if (ex === 'Snelle contracties') {
+      return step.kind === 'contract'
+        ? 'Kort en schoon aanspannen.'
+        : 'Meteen weer volledig loslaten.';
+    }
+    if (ex === 'Piramide') {
+      return step.kind === 'contract'
+        ? 'Dezelfde spanning (zo’n 60–70%), alleen de duur wisselt.'
+        : 'Laat volledig los en adem rustig door.';
+    }
+    if (ex === 'Lange holds') {
+      return step.kind === 'contract'
+        ? 'Span aan op zo’n 60–70% kracht. Buik, billen en dijen blijven ontspannen.'
+        : 'Laat volledig los en adem rustig door.';
+    }
+    return '';
+  }
   const ringFg = document.getElementById('ringFg');
   const ringNumber = document.getElementById('ringNumber');
   const playerPause = document.getElementById('playerPause');
@@ -1286,7 +1415,9 @@
     playerLabel.textContent = step.label;
     playerLabel.classList.toggle('rest-note', step.kind === 'rest');
     playerProgress.textContent = step.kind === 'rest' ? 'Rust' : ('Herhaling ' + step.repIndex + ' / ' + step.repTotal);
+    playerCue.textContent = cueFor(step);
     beep(step.kind === 'contract' ? 660 : (step.kind === 'reverse' ? 560 : 440), 0.12);
+    vibrateFor(step.kind);
     drawRing(step.dur * 1000, step.dur * 1000);
   }
 
@@ -1313,6 +1444,7 @@
     rafHandle = null;
     playerEl.classList.remove('active');
     releaseWakeLock();
+    vibrate([200, 100, 200]); // session finished
     markDoneToday();
   }
 
@@ -1343,6 +1475,7 @@
     rafHandle = null;
     playerEl.classList.remove('active');
     releaseWakeLock();
+    if (canVibrate) { try { navigator.vibrate(0); } catch(e){} }
   });
 
   const copyReminderBtn = document.getElementById('copyReminderBtn');
@@ -1360,7 +1493,19 @@
   }
 
   /* ---------- Init ---------- */
+  syncVibrationUI();
   renderAll();
+
+  /* ---------- Offline (service worker) ---------- */
+  // Only works when the page is served over https from its own site (e.g. GitHub Pages).
+  // In previews and local files this silently does nothing.
+  try {
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      window.addEventListener('load', function(){
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  } catch(e){}
 })();
 </script>
 </body>
